@@ -149,11 +149,11 @@ namespace Ripasso___gestione_file
         {
 
             string s;
-            s = "<!DOCTYPE HTML>\r\n <HTML lang=\"it\">\r\n <title\r\n <title> visualizzazione dell'array <\title> \r\n <head>\r\n <body>\r\n <table>\r\n <tr>";
+            s = "<!DOCTYPE HTML><title> visualizzazione dell'array </title><head> <body> <table><tr>";
             for (int i = 0; i < indice; i++)
             {
-                s += $"<td>{array[i]}<\td>";
-                
+                s += $"<td>{array[i]}</td>";
+
             }
             using (StreamWriter sw = new StreamWriter(file)) // stream writer non va chiuso perchè viene attivato soltanto qua. ti scrive la stringta s nel file che abbiamo messo in html così si potrà vedere direttamente da browser
             {
