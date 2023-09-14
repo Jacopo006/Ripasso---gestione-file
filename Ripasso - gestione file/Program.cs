@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,7 +16,8 @@ namespace Ripasso___gestione_file
             int[] vettore = new int[100]; //dichiaro l'array rinominato vettore
             int c, n, p;
             bool r = false;
-
+            string file_html = @"sito.html";
+            
 
             do
             {
@@ -73,9 +75,10 @@ namespace Ripasso___gestione_file
                     InserisciNumero(vettore, num, posizione);
                     break;
 
-                //case "V":
-                //    Console.WriteLine(Sito(vettore, ref c));
-                //    break;
+                case "V": // la stringa è stata scritta sul file
+                    Sito(vettore, ref c, file_html);
+                    Console.WriteLine("il vettore è stato scritto nel file html");
+                    break;
 
                 default:
                     Console.WriteLine("Scelta non valida.");
@@ -142,16 +145,21 @@ namespace Ripasso___gestione_file
 
 
 
-        //static string Sito(int[] array, ref int indice)
-        //{
-        //    string s;
-        //    s = "<!DOCTYPE HTML>\r\n <HTML lang=\"it\">\r\n <title\r\n <title> visualizzazione dell'array <\title> \r\n <head>\r\n <body>\r\n <table>\r\n <tr>";
-        //    for (int i = 0; i < indice; i++)
-        //    {
-        //        s += $"<td>{vettore[i]}<\td>";
-        //    }
-        //    s += $"<\tr>\r\n <table\r\n <\body\r\n <html>"; 
-        //}
+        static void Sito(int[] array, ref int indice, string file)
+        {
+
+            string s;
+            s = "<!DOCTYPE HTML>\r\n <HTML lang=\"it\">\r\n <title\r\n <title> visualizzazione dell'array <\title> \r\n <head>\r\n <body>\r\n <table>\r\n <tr>";
+            for (int i = 0; i < indice; i++)
+            {
+                s += $"<td>{array[i]}<\td>";
+                
+            }
+            using (StreamWriter sw = new StreamWriter(file)) // stream writer non va chiuso perchè viene attivato soltanto qua. ti scrive la stringta s nel file che abbiamo messo in html così si potrà vedere direttamente da browser
+            {
+                sw.WriteLine(s); // scrive il codice html sulla riga 
+            }
+        }
 
     }
 }
