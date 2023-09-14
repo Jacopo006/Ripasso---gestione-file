@@ -1,38 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ripasso___gestione_file
 {
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] vettore = { 210, 1, 2, 3, 4, 89, 30, 57, 98, 5, 6, 7, 8, 9, 10 }; //dichiaro l'array rinominato vettore
+            int[] vettore = new int[100]; //dichiaro l'array rinominato vettore
+            int c, n, p;
+            bool r = false;
 
-            Console.WriteLine("Scegli un'operazione:");
-            Console.WriteLine(" ");
-            Console.WriteLine("C. Cerca un numero");
-            Console.WriteLine(" ");
-            Console.WriteLine("R. Cancella un valore in una posizione");
-            Console.WriteLine(" ");
-            Console.WriteLine("I. Inserisci un numero in una posizione");
-            string scelta = Convert.ToString(Console.ReadLine());
+
+            do
+            {
+                Console.WriteLine("inserisci il numero di elementi iniziale dell'array(compreso tra 0 e 25)"); // numero di elementi 
+                c = int.Parse(Console.ReadLine()); // assegno il valore in input di c
+
+            } while (c < 0 || c > 25);
+
+
+            for (byte i = 0; i < c; i++) // ciclo for per l'inserimento degli elementi nell'array
+            {
+                Console.WriteLine("inserisci l'elemento in poszione " + i); // richiesta inserimento degli elemneti per l'utente
+                vettore[i] = int.Parse(Console.ReadLine());
+            }
 
             Console.Clear();
 
 
+
+            Console.WriteLine("Scegli un'operazione: ");
+            Console.WriteLine(" ");
+            Console.WriteLine("R. per ricercare un elemento all'interno dell'array");
+            Console.WriteLine(" ");
+            Console.WriteLine("C. Cancella un valore in una posizione");
+            Console.WriteLine(" ");
+            Console.WriteLine("I. Inserisci un numero in una posizione");
+            Console.WriteLine(" ");
+            Console.WriteLine("U. uscita dal programma ");
+            Console.WriteLine(" ");
+            Console.WriteLine("V. visualizzare l'array in HTML");
+
+
+
+            string scelta = Convert.ToString(Console.ReadLine());
+
             switch (scelta)
             {
-                case "C":
+                case "R":
                     Console.WriteLine("Inserisci un numero da cercare:");
                     int numero = Convert.ToInt32(Console.ReadLine());
                     CercaNumero(vettore, numero);
                     break;
 
-                case "R":
+                case "C":
                     Console.WriteLine("Inserisci la posizione del valore da cancellare:");
                     int index = Convert.ToInt32(Console.ReadLine());
                     CancellaValore(vettore, index);
@@ -45,6 +72,10 @@ namespace Ripasso___gestione_file
                     int posizione = Convert.ToInt32(Console.ReadLine());
                     InserisciNumero(vettore, num, posizione);
                     break;
+
+                //case "V":
+                //    Console.WriteLine(Sito(vettore, ref c));
+                //    break;
 
                 default:
                     Console.WriteLine("Scelta non valida.");
@@ -90,7 +121,7 @@ namespace Ripasso___gestione_file
 
         static void InserisciNumero(int[] vettore, int num, int posizione)
         {
-            if (posizione >= 0 && posizione < vettore.Length)
+            if (posizione >= 0  && posizione < vettore.Length)
             {
                 for (int i = vettore.Length - 1; i > posizione; i--)
                 {
@@ -108,5 +139,19 @@ namespace Ripasso___gestione_file
                 Console.WriteLine("La posizione non è valida");
             }
         }
+
+
+
+        //static string Sito(int[] array, ref int indice)
+        //{
+        //    string s;
+        //    s = "<!DOCTYPE HTML>\r\n <HTML lang=\"it\">\r\n <title\r\n <title> visualizzazione dell'array <\title> \r\n <head>\r\n <body>\r\n <table>\r\n <tr>";
+        //    for (int i = 0; i < indice; i++)
+        //    {
+        //        s += $"<td>{vettore[i]}<\td>";
+        //    }
+        //    s += $"<\tr>\r\n <table\r\n <\body\r\n <html>"; 
+        //}
+
     }
 }
