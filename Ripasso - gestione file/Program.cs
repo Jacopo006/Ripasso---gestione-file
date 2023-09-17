@@ -157,7 +157,7 @@ namespace Ripasso___gestione_file
             }
             using (StreamWriter sw = new StreamWriter(file)) // stream writer non va chiuso perchè viene attivato soltanto qua. ti scrive la stringta s nel file che abbiamo messo in html così si potrà vedere direttamente da browser
             {
-                sw.WriteLine(s); // scrive il codice html sulla riga
+                sw.WriteLine(s); // scrive il codice html sulla riga 
             }
         }
 
